@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace QuestTracker.Persistence;
+namespace ConsoleAdventureManager.Persistence;
 
 public class JsonStorage
 {

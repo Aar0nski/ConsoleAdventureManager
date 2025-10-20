@@ -8,26 +8,26 @@ namespace ConsoleAdventureManager.Services
 {
     public class TwilioNotificationService : NotificationService
     {
-        public override void SendTwoFactorCode(User user, string code)
+        public override void SendTwoFactorCode(User user, string code) // Skickar 2FA-kod via Twilio SMS
         {
-            var accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
-            var authToken = Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN");
+            var accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID"); // Hämta Twilio-kontots SID från miljövariabler
+            var authToken = Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN"); // Hämta Twilio-autentiseringstoken från miljövariabler
 
-            if (string.IsNullOrWhiteSpace(accountSid) || string.IsNullOrWhiteSpace(authToken))
+            if (string.IsNullOrWhiteSpace(accountSid) || string.IsNullOrWhiteSpace(authToken)) // Kontrollera att Twilio-uppgifter finns
             {
                 Console.Error.WriteLine("⚠️ Twilio credentials saknas. Sätt TWILIO_ACCOUNT_SID och TWILIO_AUTH_TOKEN.");
                 return;
             }
 
-            TwilioClient.Init(accountSid, authToken);
+            TwilioClient.Init(accountSid, authToken); // Initiera Twilio-klienten
 
-            if (string.IsNullOrWhiteSpace(user.Phone))
+            if (string.IsNullOrWhiteSpace(user.Phone)) // Kontrollera att användaren har ett telefonnummer
             {
-                Console.WriteLine($"⚠️ Ingen telefon angiven för {user.Username}");
+                Console.WriteLine($"⚠️ Ingen telefon angiven för {user.Username}"); // Varning om inget telefonnummer är angivet
                 return;
             }
 
-            var from = new PhoneNumber("+16073262957"); // Ditt Twilio-nummer
+            var from = new PhoneNumber("xxxxxxx"); // Ditt Twilio-nummer
             var to = new PhoneNumber(user.Phone);
             var body = $"Hej {user.Username}! Din guild-kod är: {code}";
 
