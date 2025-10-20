@@ -3,7 +3,7 @@ using ConsoleAdventureManager.Services;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace QuestTracker.Services;
+namespace ConsoleAdventureManager.Services;
 
 public class Authenticator
 {
