@@ -1,5 +1,6 @@
 ﻿namespace ConsoleAdventureManager.Domain;
 
+
 public enum Priority { High, Medium, Low }
 
 public class Quest
@@ -10,6 +11,7 @@ public class Quest
     public Priority Priority { get; set; } = Priority.Medium;
     public bool IsCompleted { get; set; } = false;
 
+    // boolen gör en kontroll om uppdraget är nära deadline genom att jämföra nuvarande tid med förfallodatumet.
     public bool IsDueSoon(int hours) =>
         !IsCompleted && (DueDate - DateTime.Now).TotalHours <= hours;
 }
